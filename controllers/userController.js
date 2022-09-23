@@ -25,6 +25,21 @@ module.exports.getUsers = async (req, res) => {
   }
 };
 
+module.exports.updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { firstName, lastName, emailId } = req.body;
+  try {
+    const updatedUser = await User.findByIdAndUpdate(id, {
+      firstName,
+      lastName,
+      emailId,
+    });
+    res.json({ data: updatedUser });
+  } catch (err) {
+    console.log("users not updated: ", err);
+  }
+};
+
 module.exports.deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
