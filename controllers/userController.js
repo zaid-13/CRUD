@@ -26,10 +26,10 @@ module.exports.getUsers = async (req, res) => {
 };
 
 module.exports.deleteUser = async (req, res) => {
-  const { id } = req.body;
-
+  const { id } = req.params;
   try {
-    const deletedUser = await User.findByIdAndDelete({ id });
+    const deletedUser = await User.findByIdAndDelete(id);
+    res.json({ deletedUser });
   } catch (error) {
     console.log("User has not been deleted: ", error);
   }

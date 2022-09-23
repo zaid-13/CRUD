@@ -4,7 +4,7 @@ const userController = require("../controllers/userController");
 
 router.post("/api/createUser", userController.createUser);
 router.get("/api/getUsers", userController.getUsers);
-router.delete("/api/deleteUser", userController.deleteUser);
+router.delete("/api/deleteUser/:id", userController.deleteUser);
 
 // router.post("/api/updateUser", () => {});
 
