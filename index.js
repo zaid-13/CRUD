@@ -1,9 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = require("./routes/userRoutes");
+const cors = require("cors");
+
 const app = express();
 const port = process.env.PORT || 3000;
+
 app.use(express.json());
+app.use(cors());
 
 const uri =
   "mongodb+srv://zaid:zaidadmin@cluster0.9p1rhbx.mongodb.net/usersDB?retryWrites=true&w=majority";
