@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = require("./routes/userRoutes");
 const app = express();
-
+const port = process.env.PORT || 3000;
 app.use(express.json());
 
 const uri =
@@ -11,11 +11,15 @@ const uri =
 mongoose
   .connect(uri)
   .then(() => {
-    app.listen(3000, () => console.log("listening to 3000"));
+    app.listen(port, () => console.log("listening to " + port));
   })
   .catch((err) => {
     console.log("cannot connect to the database: ", err);
   });
+
+app.get("/", (req, res) => {
+  res.send("<h1>Welcome to backend</h1>");
+});
 
 app.get("/api", (req, res) => {
   res.send("<h1>Welcome to the API</h1>");
