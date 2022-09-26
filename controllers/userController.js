@@ -29,12 +29,16 @@ module.exports.updateUser = async (req, res) => {
   const { id } = req.params;
   const { firstName, lastName, emailId } = req.body;
   try {
-    const updatedUser = await User.findByIdAndUpdate(id, {
-      firstName,
-      lastName,
-      emailId,
-    });
-    res.json({ data: updatedUser });
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      {
+        firstName,
+        lastName,
+        emailId,
+      },
+      { new: true }
+    );
+    res.json({ updatedUser });
   } catch (err) {
     console.log("users not updated: ", err);
   }
